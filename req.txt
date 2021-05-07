@@ -1,0 +1,9 @@
+future==0.17.1
+google-auth==1.30.0
+google-auth-oauthlib==0.4.4
+gspread==3.7.0
+jsonschema==3.0.1
+oauth2client==1.5.2
+oauthlib==3.1.0
+pandas==0.24.2
+SecretStorage==3.1.1
