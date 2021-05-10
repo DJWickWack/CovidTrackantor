@@ -31,6 +31,7 @@ sheet = workbook.sheet1
 data = pd.DataFrame(sheet.get_all_records())
 data = data.set_index("Timestamp")
 data.index = pd.to_datetime(data.index)
+
 record=pd.read_csv('record.csv',index_col=0)
 yes=None
 no=None
@@ -128,7 +129,13 @@ print("1. Check todays date")
 print("2. Check yesterday")
 print("3. Check spefied date")
 print("4. Do past week")
-num = int(input("Choice "))
+num = input("Choice ")
+if(num==''):
+    compareday= datetime.datetime(compareday.year, compareday.month, compareday.day)
+    atten,yes,no=checkday(data,compareday)
+else:
+    num=int(num)
+
 if(num==1):
     compareday= datetime.datetime(compareday.year, compareday.month, compareday.day)
     atten,yes,no=checkday(data,compareday)
@@ -147,6 +154,8 @@ if(num==4):
     print("Past week has been recorded")
     time.sleep(3)
     exit()
+else:
+    print ("number entered is not a vaild number")
 MasterList=pd.read_csv('MasterList.csv')
 MasterList=DNC(atten, MasterList)
 Fillsheet(yes, no, MasterList, record,compareday)
@@ -159,6 +168,7 @@ for x in yes.index:
 print("people who have not completed the form:")
 for x in MasterList.index:
     print("   * "+MasterList["First Name"][x]+" "+MasterList["Last Name"][x])
+pp=input("Press any key to exit")
 
 
 
