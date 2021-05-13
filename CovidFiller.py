@@ -49,19 +49,23 @@ def checkday(data,date):
         if (day== mdate):
             temp = {'First Name': data['First Name'][x], "Last Name":data['Last Name'][x]}
             attendanceframe= attendanceframe.append(temp,ignore_index=True)
-            
-            if(data['I am participating in Microspec’s required COVID-19 Daily Safety Screening program. If any, or all, of my symptoms are consistent with cold, flu, respiratory or gastrointestinal illness (the markers of COVID-19), I agree to contact my physician for follow up and report the results to Human Resource. The responsibility for follow up is mine alone and not those associated with this screening. I hereby release Microspec Corporation ("Microspec" or the “Company") and each of its employees and agents from any liability arising from, or in any way connected with, this screening and disclosure form to the fullest extent permitted by applicable law.'][x]!="I Accept" or
-            data['Answer this question only on the first day of your work week. If this is a Monday, was your temperature taken over the weekend on Saturday and Sunday 100° or higher?'][x]=='Yes' or
-            data['Do you have a persistent cough?'][x]=='Yes'or
-            data['Do you have shortness of breath?'][x]=='Yes'or
-            data['In the last 24 hours, have you experienced any of the following symptoms: • Chills/shaking with chills • Loss of taste or smell • Muscle pain • Headache • Sore throat • Intestinal distress with vomiting or diarrhea • Nausea • Fever • Cough • Difficulty breathing • Stuffy nose • Congestion?'][x]=='Yes'or
-            data['In the last 24 hours: • Have you taken a fever reducer (such as Tylenol or Advil) to relieve a fever of 100° or higher? • Have you taken a cough suppressant to relieve a dry cough?'][x]=='Yes'or
-            data["In the last 7 days, have you, or someone in your household: • Visited inside your home or someone else's home with anyone outside of your household? • Attended an inside or outside public gathering?"][x]=='Yes'or
-            data["In the last 7 days, have you, or someone in your household traveled outside of New England or traveled anywhere by air?"][x]=='Yes'or
-            data["In the last 14 days, have you had contact with someone who has tested positive for COVID-19?"][x]=='Yes'):
-                yesframe= yesframe.append(temp, ignore_index=True)
-            else:
-                noframe= noframe.append(temp, ignore_index=True)
+            try:
+                if(data['I am participating in Microspec’s required COVID-19 Daily Safety Screening program. If any, or all, of my symptoms are consistent with cold, flu, respiratory or gastrointestinal illness (the markers of COVID-19), I agree to contact my physician for follow up and report the results to Human Resource. The responsibility for follow up is mine alone and not those associated with this screening. I hereby release Microspec Corporation ("Microspec" or the “Company") and each of its employees and agents from any liability arising from, or in any way connected with, this screening and disclosure form to the fullest extent permitted by applicable law.'][x]!="I Accept" or
+                data['Answer this question only on the first day of your work week. If this is a Monday, was your temperature taken over the weekend on Saturday and Sunday 100° or higher?'][x]=='Yes' or
+                data['Do you have a persistent cough?'][x]=='Yes'or
+                data['Do you have shortness of breath?'][x]=='Yes'or
+                data['In the last 24 hours, have you experienced any of the following symptoms: • Chills/shaking with chills • Loss of taste or smell • Muscle pain • Headache • Sore throat • Intestinal distress with vomiting or diarrhea • Nausea • Fever • Cough • Difficulty breathing • Stuffy nose • Congestion?'][x]=='Yes'or
+                data['In the last 24 hours: • Have you taken a fever reducer (such as Tylenol or Advil) to relieve a fever of 100° or higher? • Have you taken a cough suppressant to relieve a dry cough?'][x]=='Yes'or
+                data["In the last 7 days, have you, or someone in your household: • Visited inside your home or someone else's home with anyone outside of your household? • Attended an inside or outside public gathering?"][x]=='Yes'or
+                data["In the last 7 days, have you, or someone in your household traveled outside of New England or traveled anywhere by air?"][x]=='Yes'or
+                data["In the last 14 days, have you had contact with someone who has tested positive for COVID-19?"][x]=='Yes'):
+                    yesframe= yesframe.append(temp, ignore_index=True)
+                else:
+                    noframe= noframe.append(temp, ignore_index=True)
+            except ValueError:
+                temp = {'First Name': data['First Name'][x], "Last Name":data['Last Name'][x]}
+                print("At "+str(x))
+                print(temp['First Name']+" "+temp['Last Name']+" has somehow filledout the form incorrectly")
     return(attendanceframe,yesframe,noframe)
 
 def DNC(attendanceframe,MasterList):
