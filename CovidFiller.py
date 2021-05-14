@@ -126,6 +126,21 @@ def weekcycle(date,data):
         date+=datetime.timedelta(days=1)
         weekcycle(date,data)
 
+def dayprint(date,data):
+        MasterList=pd.read_csv('MasterList.csv')
+        atten,yes,no=checkday(data,date)
+        MasterList=DNC(atten, MasterList)
+        Fillsheet(yes, no, MasterList, record,date)
+        print("-"*7)
+        print("data recorded in record.csv")
+        print("-"*7)
+        print("people that need to be followed up it with:")
+        for x in yes.index:
+            print("   * "+yes["First Name"][x]+" "+yes["Last Name"][x])
+        print("people who have not completed the form:")
+        for x in MasterList.index:
+            print("   * "+MasterList["First Name"][x]+" "+MasterList["Last Name"][x])
+
 
 print("Welcome to the auto Covid Tracker Fillanator")
 print("What would you like to do?")
@@ -133,10 +148,26 @@ print("1. Check todays date")
 print("2. Check yesterday")
 print("3. Check certain date")
 print("4. Run tracker for past week")
-num = input("Choice ")
+print("5 Do today and yesterday")
+num = input("Choice[5] ")
 if(num==''):
+    
+    today=compareday
+    compareday-= datetime.timedelta(days=1)
     compareday= datetime.datetime(compareday.year, compareday.month, compareday.day)
-    atten,yes,no=checkday(data,compareday)
+    print("-*-"*7)
+    print("YESTERDAY   "+str(compareday.month)+"-"+str(compareday.day))
+    print("-*-"*7)
+    dayprint(compareday,data)
+
+    compareday= datetime.datetime(today.year, today.month, today.day)
+    print("-*-"*7)
+    print("TODAY   "+str(compareday.month)+"-"+str(compareday.day))
+    print("-*-"*7)  
+    dayprint(compareday,data)
+    
+    pp=input("Press any key to exit")
+    exit()
 else:
     num=int(num)
 
@@ -158,6 +189,25 @@ if(num==4):
     print("Past week has been recorded")
     time.sleep(3)
     exit()
+if(num==5):
+
+    today=compareday
+    compareday-= datetime.timedelta(days=1)
+    compareday= datetime.datetime(compareday.year, compareday.month, compareday.day)
+    print("-*-"*7)
+    print("YESTERDAY   "+str(compareday.month)+"-"+str(compareday.day))
+    print("-*-"*7)
+    dayprint(compareday,data)
+
+    compareday= datetime.datetime(today.year, today.month, today.day)
+    print("-*-"*7)
+    print("TODAY   "+str(compareday.month)+"-"+str(compareday.day))
+    print("-*-"*7)  
+    dayprint(compareday,data)
+    
+    pp=input("Press any key to exit")
+    exit()
+    
 else:
     print ("number entered is not a vaild number")
 MasterList=pd.read_csv('MasterList.csv')
