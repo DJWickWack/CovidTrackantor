@@ -149,28 +149,12 @@ print("2. Check yesterday")
 print("3. Check certain date")
 print("4. Run tracker for past week")
 print("5 Do today and yesterday")
-num = input("Choice[5] ")
-if(num==''):
-    
-    today=compareday
-    compareday-= datetime.timedelta(days=1)
+num = input("Choice[1] ")
+if(num==''):    
     compareday= datetime.datetime(compareday.year, compareday.month, compareday.day)
-    print("-*-"*7)
-    print("YESTERDAY   "+str(compareday.month)+"-"+str(compareday.day))
-    print("-*-"*7)
-    dayprint(compareday,data)
-
-    compareday= datetime.datetime(today.year, today.month, today.day)
-    print("-*-"*7)
-    print("TODAY   "+str(compareday.month)+"-"+str(compareday.day))
-    print("-*-"*7)  
-    dayprint(compareday,data)
-    
-    pp=input("Press any key to exit")
-    exit()
+    atten,yes,no=checkday(data,compareday)
 else:
     num=int(num)
-
 if(num==1):
     compareday= datetime.datetime(compareday.year, compareday.month, compareday.day)
     atten,yes,no=checkday(data,compareday)
