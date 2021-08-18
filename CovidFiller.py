@@ -5,7 +5,6 @@ import time
 import re
 import gspread
 from google.oauth2.service_account import Credentials
-from oauth2client.client import SignedJwtAssertionCredentials
 import json
 
 global compareday
@@ -100,12 +99,12 @@ def Fillsheet (yesframe,noframe,MasterList,record,date):
         i=re.sub(r"\s+", "", noframe["First Name"][x])+" "+re.sub(r"\s+", "", noframe["Last Name"][x])
         i=i.lower()
         i=i.title()
-        record[colname][i]="all set"
+        record.loc[:, ('colname', 'i')]="all set"
     for x in MasterList.index:
         i=re.sub(r"\s+", "", MasterList["First Name"][x])+" "+re.sub(r"\s+", "", MasterList["Last Name"][x])
         i=i.lower()
         i=i.title()
-        record[colname][i]="DID NOT COMPLETE"
+        record.loc[:, ('colname', 'i')]="DID NOT COMPLETE"
     arrr=[]
     for x in record.index:
         arrr.append(record[colname][x])
