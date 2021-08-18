@@ -54,8 +54,9 @@ def checkday(data,date):
                 data['Answer this question only on the first day of your work week. If this is a Monday, was your temperature taken over the weekend on Saturday and Sunday 100° or higher?'][x]=='Yes' or
                 data['Do you have a persistent cough?'][x]=='Yes'or
                 data['Do you have shortness of breath?'][x]=='Yes'or
-                data['In the last 24 hours, have you experienced any of the following symptoms: • Chills/shaking with chills • Loss of taste or smell • Muscle pain • Headache • Sore throat • Intestinal distress with vomiting or diarrhea • Nausea • Fever • Cough • Difficulty breathing • Stuffy nose • Congestion?'][x]=='Yes'or
-                data['In the last 24 hours: • Have you taken a fever reducer (such as Tylenol or Advil) to relieve a fever of 100° or higher? • Have you taken a cough suppressant to relieve a dry cough?'][x]=='Yes'or
+                data['In the last 24 hours, have you experienced any of the following symptoms: • Stuffy nose • Congestion • Cough •  Chills/shaking with chills • Loss of taste or smell • Muscle pain • Headache • Sore throat • Intestinal distress with vomiting or diarrhea • Nausea • Fever  • Difficulty breathing?'][x]=='Yes'or
+                data['In the last 24 hours, has someone in your household experienced any of the following symptoms: • Stuffy nose • Congestion • Cough •  Chills/shaking with chills • Loss of taste or smell • Muscle pain • Headache • Sore throat • Intestinal distress with vomiting or diarrhea • Nausea • Fever  • Difficulty breathing?'][x]=='Yes'or
+                data['In the last 24 hours: • Have you taken a fever reducer (such as Tylenol or Advil) to relieve a fever of 100° or higher? • Have you taken a cough suppressant to relieve a dry cough?'][x] == 'Yes' or
                 data["In the last 7 days, have you, or someone in your household: • Visited inside your home or someone else's home with anyone outside of your household? • Attended an inside or outside public gathering?"][x]=='Yes'or
                 data["In the last 7 days, have you, or someone in your household traveled outside of New England or traveled anywhere by air?"][x]=='Yes'or
                 data["In the last 14 days, have you had contact with someone who has tested positive for COVID-19?"][x]=='Yes'):
