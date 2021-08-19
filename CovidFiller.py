@@ -94,7 +94,7 @@ def Fillsheet (yesframe,noframe,MasterList,record,date):
         i=re.sub(r"\s+", "", yesframe["First Name"][x])+" "+re.sub(r"\s+", "", yesframe["Last Name"][x])
         i=i.lower()
         i=i.title()
-        record[colname][i]="FOLLOW UP"
+        record.loc[:, ('colname', 'i')] ="FOLLOW UP"
     for x in noframe.index:
         i=re.sub(r"\s+", "", noframe["First Name"][x])+" "+re.sub(r"\s+", "", noframe["Last Name"][x])
         i=i.lower()
@@ -206,7 +206,7 @@ for x in yes.index:
 print("people who have not completed the form:")
 for x in MasterList.index:
     print("   * "+MasterList["First Name"][x]+" "+MasterList["Last Name"][x])
-pp=input("Press any key to exit")
+pp=input("Press ENTER to exit")
 
 
 
